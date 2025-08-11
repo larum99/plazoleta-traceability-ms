@@ -1,0 +1,17 @@
+server:
+  port: 8093
+
+spring:
+  application:
+    name: plazoleta-traceability-ms
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/plazoleta_traceability
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+security:
+  jwt:
+    secret: ${JWT_SECRET_KEY}
+    expiration-millis: ${JWT_EXPIRATION_MILLIS:300000}

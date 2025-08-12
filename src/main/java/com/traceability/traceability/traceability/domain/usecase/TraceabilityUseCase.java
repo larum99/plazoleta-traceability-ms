@@ -9,6 +9,9 @@ import com.traceability.traceability.traceability.domain.models.TraceabilityMode
 
 import java.util.List;
 
+import static com.traceability.traceability.traceability.domain.utils.DomainConstants.ROLE_CLIENT;
+import static com.traceability.traceability.traceability.domain.utils.DomainConstants.ROLE_EMPLOYEE;
+
 public class TraceabilityUseCase implements TraceabilityServicePort {
 
     private final TraceabilityPersistencePort persistencePort;
@@ -19,7 +22,7 @@ public class TraceabilityUseCase implements TraceabilityServicePort {
 
     @Override
     public void saveTraceabilityLog(TraceabilityModel logModel, String role, Long userId) {
-        if (!"CLIENTE".equalsIgnoreCase(role) && !"EMPLEADO".equalsIgnoreCase(role)) {
+        if (!ROLE_CLIENT.equalsIgnoreCase(role) && !ROLE_EMPLOYEE.equalsIgnoreCase(role)) {
             throw new UnauthorizedAccessException();
         }
 
@@ -32,7 +35,7 @@ public class TraceabilityUseCase implements TraceabilityServicePort {
 
     @Override
     public List<TraceabilityModel> getTraceabilityLogsByOrderId(Long orderId, String role, Long userId) {
-        if (!"CLIENTE".equalsIgnoreCase(role)) {
+        if (!ROLE_CLIENT.equalsIgnoreCase(role)) {
             throw new UnauthorizedAccessException();
         }
 

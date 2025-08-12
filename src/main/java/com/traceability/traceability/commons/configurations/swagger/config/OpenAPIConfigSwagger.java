@@ -1,4 +1,4 @@
-package com.traceability.traceability.commons.configurations.swagger;
+package com.traceability.traceability.commons.configurations.swagger.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

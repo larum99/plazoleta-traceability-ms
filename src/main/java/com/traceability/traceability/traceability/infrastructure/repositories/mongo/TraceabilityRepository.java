@@ -8,4 +8,7 @@ import java.util.List;
 public interface TraceabilityRepository extends MongoRepository<TraceabilityEntity, String> {
 
     List<TraceabilityEntity> findByOrderIdAndClientId(Long orderId, Long clientId);
+
+    List<TraceabilityEntity> findByOrderIdIn(List<Long> orderIds);
+
 }

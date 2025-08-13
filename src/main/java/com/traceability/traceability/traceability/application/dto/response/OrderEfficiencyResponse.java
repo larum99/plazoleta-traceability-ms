@@ -6,5 +6,6 @@ public record OrderEfficiencyResponse(
         Long orderId,
         LocalDateTime startTime,
         LocalDateTime endTime,
-        Long durationSeconds
+        Long durationSeconds,
+        Double durationMinutes
 ) {}

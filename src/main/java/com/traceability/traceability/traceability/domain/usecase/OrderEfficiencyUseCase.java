@@ -1,5 +1,6 @@
 package com.traceability.traceability.traceability.domain.usecase;
 
+import com.traceability.traceability.traceability.domain.exceptions.RestaurantNotFoundException;
 import com.traceability.traceability.traceability.domain.exceptions.UnauthorizedAccessException;
 import com.traceability.traceability.traceability.domain.models.OrderEfficiencyModel;
 import com.traceability.traceability.traceability.domain.models.EmployeeRankingModel;
@@ -29,6 +30,11 @@ public class OrderEfficiencyUseCase implements OrderEfficiencyServicePort {
     @Override
     public List<OrderEfficiencyModel> getOrderEfficiencies(Long restaurantId, String role, Long userId) {
         validateRole(role);
+
+        Boolean exists = plazoletaFeignClient.existsRestaurantById(restaurantId);
+        if (exists == null || !exists) {
+            throw new RestaurantNotFoundException();
+        }
 
         List<Long> orderIds = plazoletaFeignClient.getOrderIdsByRestaurantId(restaurantId);
         if (orderIds == null || orderIds.isEmpty()) {
@@ -65,6 +71,11 @@ public class OrderEfficiencyUseCase implements OrderEfficiencyServicePort {
     @Override
     public List<EmployeeRankingModel> getEmployeeRankings(Long restaurantId, String role, Long userId) {
         validateRole(role);
+
+        Boolean exists = plazoletaFeignClient.existsRestaurantById(restaurantId);
+        if (exists == null || !exists) {
+            throw new RestaurantNotFoundException();
+        }
 
         List<Long> orderIds = plazoletaFeignClient.getOrderIdsByRestaurantId(restaurantId);
         if (orderIds == null || orderIds.isEmpty()) {

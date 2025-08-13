@@ -3,18 +3,19 @@ package com.traceability.traceability.traceability.domain.models;
 import java.time.LocalDateTime;
 
 public class OrderEfficiencyModel {
+
     private Long orderId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Long durationSeconds;
-
-    public OrderEfficiencyModel() {}
+    private Double durationMinutes;
 
     public OrderEfficiencyModel(Long orderId, LocalDateTime startTime, LocalDateTime endTime, Long durationSeconds) {
         this.orderId = orderId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.durationSeconds = durationSeconds;
+        this.durationMinutes = durationSeconds / 60.0;
     }
 
     public Long getOrderId() {
@@ -47,5 +48,13 @@ public class OrderEfficiencyModel {
 
     public void setDurationSeconds(Long durationSeconds) {
         this.durationSeconds = durationSeconds;
+    }
+
+    public Double getDurationMinutes() {
+        return durationMinutes;
+    }
+
+    public void setDurationMinutes(Double durationMinutes) {
+        this.durationMinutes = durationMinutes;
     }
 }

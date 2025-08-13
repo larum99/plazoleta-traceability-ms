@@ -40,4 +40,14 @@ public class ControllerAdvisor {
                 )
         );
     }
+
+    @ExceptionHandler(RestaurantNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleRestaurantNotFound(RestaurantNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ExceptionResponse(
+                        ex.getMessage() != null ? ex.getMessage() : ExceptionConstants.RESTAURANT_NOT_FOUND_MESSAGE,
+                        LocalDateTime.now()
+                )
+        );
+    }
 }

@@ -2,9 +2,6 @@ package com.traceability.traceability.commons.configurations.swagger.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.Contact;
-import io.swagger.v3.oas.models.info.License;
-import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
@@ -24,19 +21,9 @@ public class OpenAPIConfigSwagger {
 
         return new OpenAPI()
                 .info(new Info()
-                        .title("Traceability Service API")
+                        .title("Plazoleta - Traceability Service API")
                         .description("Microservicio para gestión de logs de trazabilidad de pedidos.")
-                        .version("1.0.0")
-                        .contact(new Contact()
-                                .name("Equipo Traceability")
-                                .email("soporte@traceability.com")
-                                .url("https://traceability.com"))
-                        .license(new License()
-                                .name("Apache 2.0")
-                                .url("https://www.apache.org/licenses/LICENSE-2.0")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("Documentación completa")
-                        .url("https://traceability.com/docs"))
+                        .version("1.0.0"))
                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(new io.swagger.v3.oas.models.Components()
                         .addSecuritySchemes("bearerAuth", bearerAuthScheme));
